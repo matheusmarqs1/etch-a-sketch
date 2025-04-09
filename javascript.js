@@ -17,10 +17,10 @@ const container = document.querySelector(".container");
 const button = document.querySelector(".btn");
 
 // Constants for initial grid configuration
-const INITIALSIZE = 16;
-const CONTAINERSIZE = 512; // Container size in pixels
+const INITIAL_SQUARE_PER_SIDE = 16;
+const CONTAINER_SIZE = 512; // Container size in pixels
 
-let squaresPerSide = INITIALSIZE;
+let squaresPerSide = INITIAL_SQUARE_PER_SIDE;
 let totalSquares = squaresPerSide * squaresPerSide;
 
 // Create the initial grid
@@ -29,7 +29,7 @@ createGrid(totalSquares);
 function createGrid(totalSquares){
     // Clear previous grid
     container.textContent = '';
-    const squareSize = CONTAINERSIZE / squaresPerSide;
+    const squareSize = CONTAINER_SIZE / squaresPerSide;
 
     // Create and add each square to the grid
     for(let i = 0; i < totalSquares; i++){
@@ -43,7 +43,11 @@ function createGrid(totalSquares){
     const squares = document.querySelectorAll(".grid-square");
     squares.forEach(square => {
     square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = "grey";
+            const r = Math.floor(Math.random() * 255) + 1;
+            const g = Math.floor(Math.random() * 255) + 1;
+            const b = Math.floor(Math.random() * 255) + 1;
+
+            square.style.backgroundColor = "rgb(" + `${r}` + ", "  + `${g}` + ", " + `${b}` + ")";
         });
     });
 }
@@ -54,7 +58,7 @@ button.addEventListener("click", setGridSize);
 function setGridSize(){
     const newSquare = parseInt(prompt("How many squares per side would you like for the new grid?")); 
     
-    // Check if size exceeds maximum limit
+    // Check if squares per side exceeds maximum limit
     if(newSquare > 100) {
         alert("You picked more than the max of 100");
         return;
