@@ -28,8 +28,8 @@ function createGrid(squaresPerSide){
 
     // Clear previous grid
     container.textContent = '';
-    const totalSquares = squaresPerSide * squaresPerSide
-    const squareSize = CONTAINER_SIZE / squaresPerSide;
+    const totalSquares = squaresPerSide * squaresPerSide;
+    const squareSize = 100 / squaresPerSide; // Calculates the percentage width of each square to exactly fill the container
     
 
     // Create and add each square to the grid
@@ -37,8 +37,8 @@ function createGrid(squaresPerSide){
 
         const square = document.createElement("div");
         square.classList.add("grid-square");
-        square.style.width = `${squareSize}px`;
-        square.style.height = `${squareSize}px`;
+        square.style.width = `${squareSize}%`;
+        square.style.height = `${squareSize}%`;
         container.appendChild(square);
     }
     // Add hover effect to each square
