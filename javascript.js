@@ -18,7 +18,6 @@ const button = document.querySelector(".btn");
 
 // Constants for initial grid configuration
 const INITIAL_SQUARE_PER_SIDE = 16;
-const CONTAINER_SIZE = 512; // Container size in pixels
 
 // Create the initial grid
 let squaresPerSide = INITIAL_SQUARE_PER_SIDE;
