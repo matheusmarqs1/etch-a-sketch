@@ -21,6 +21,7 @@ h1{
 
 .grid-square {
     border: 1px solid #ddd;
+    background-color: lightgrey;
     box-sizing: border-box;
 }
 

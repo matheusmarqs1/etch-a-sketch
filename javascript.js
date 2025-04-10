@@ -20,19 +20,21 @@ const button = document.querySelector(".btn");
 const INITIAL_SQUARE_PER_SIDE = 16;
 const CONTAINER_SIZE = 512; // Container size in pixels
 
-let squaresPerSide = INITIAL_SQUARE_PER_SIDE;
-let totalSquares = squaresPerSide * squaresPerSide;
-
 // Create the initial grid
-createGrid(totalSquares);
+let squaresPerSide = INITIAL_SQUARE_PER_SIDE;
+createGrid(squaresPerSide);
 
-function createGrid(totalSquares){
+function createGrid(squaresPerSide){
+
     // Clear previous grid
     container.textContent = '';
+    const totalSquares = squaresPerSide * squaresPerSide
     const squareSize = CONTAINER_SIZE / squaresPerSide;
+    
 
     // Create and add each square to the grid
     for(let i = 0; i < totalSquares; i++){
+
         const square = document.createElement("div");
         square.classList.add("grid-square");
         square.style.width = `${squareSize}px`;
@@ -40,6 +42,11 @@ function createGrid(totalSquares){
         container.appendChild(square);
     }
     // Add hover effect to each square
+    applyHoverEffect();
+    
+}
+
+function applyHoverEffect(){
     const squares = document.querySelectorAll(".grid-square");
     squares.forEach(square => {
     square.addEventListener("mouseover", () => {
@@ -56,23 +63,16 @@ function createGrid(totalSquares){
 button.addEventListener("click", setGridSize);
 
 function setGridSize(){
-    const newSquare = parseInt(prompt("How many squares per side would you like for the new grid?")); 
-    
+    const newSquaresPerSide = parseInt(prompt("How many squares per side would you like for the new grid?")); 
+
     // Check if squares per side exceeds maximum limit
-    if(newSquare > 100) {
-        alert("You picked more than the max of 100");
+    if(isNaN(newSquaresPerSide) || (newSquaresPerSide <= 0) || (newSquaresPerSide > 100)) {
+        alert("Invalid choice!!! Please enter a number between 1 and 100 only.");
         return;
     }
     
-    // Update variables and recreate grid
-    squaresPerSide = newSquare;
-    totalSquares = squaresPerSide * squaresPerSide;
-    createGrid(totalSquares);
+    // Recreate grid
+    createGrid(newSquaresPerSide);
     
 }
-
-
-
-
-
 
